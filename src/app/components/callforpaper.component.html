@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row" *ngIf="!isRegistering">
+        <div class="buttons pull-right">
+            <button type="button" class="btn btn-success" (click)="onClickRegisterSpeaker()">Register New</button>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isRegistering">
+        <form class="form-inline">
+            <div class="form-group">
+                <input placeholder="Speaker name" name="name" id="name" [(ngModel)]="speaker.name" required class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Speaker email address" name="email" id="email" [(ngModel)]="speaker.email" required class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="button" class="form-control btn btn-success" (click)="onRegisterSpeaker()">Register</button>
+                <button type="button" class="form-control btn btn-danger" (click)="onCancelRegisterSpeaker()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <h1>Available Speakers</h1>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            <tr *ngFor="let speaker of speakers">
+                <td>{{ speaker.name }}</td>
+                <td>{{ speaker.email }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row">
+        <h2>Speakers Package</h2>
+        <ul class="list-unstyled">
+            <li>3-Day Conference Ticket</li>
+            <li>2 night hotel</li>
+            <li>Social Event | Speakers dinner</li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <h2>Themes</h2>
+        <ul class="list-unstyled">
+            <li>Mobile</li>
+            <li>Angular</li>
+            <li>Deployment</li>
+        </ul>
+    </div>
+</div>
