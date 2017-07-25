@@ -1,9 +1,19 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <call-for-paper></call-for-paper>
+<div class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="" class="navbar-brand">{{title}}!</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a routerLink="/call-for-papers" routerLinkActive="active">CfP</a>
+        </li>
+        <li>
+          <a routerLink="/speakers" routerLinkActive="active">Speakers</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
-
+<router-outlet></router-outlet>
 

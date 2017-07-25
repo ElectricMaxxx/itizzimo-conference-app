@@ -1,18 +1,16 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import {CallForPapersComponent} from "./callforpapers.component";
 import {FormsModule} from "@angular/forms";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        CallForPapersComponent,
-      ],
+      declarations: [AppComponent],
       imports: [
-          FormsModule
+          FormsModule,
+          RouterTestingModule
       ]
     }).compileComponents();
   }));
@@ -33,6 +31,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to iTiZZiMO Conference!');
+    expect(compiled.querySelector('div.navbar').textContent).toContain('iTiZZiMO Conference!');
   }));
 });
