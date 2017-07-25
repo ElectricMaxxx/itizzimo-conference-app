@@ -6,18 +6,9 @@
     </div>
 
     <div class="row" *ngIf="isRegistering">
-        <form class="form-inline">
-            <div class="form-group">
-                <input placeholder="Speaker name" name="name" id="name" [(ngModel)]="speaker.name" required class="form-control">
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Speaker email address" name="email" id="email" [(ngModel)]="speaker.email" required class="form-control">
-            </div>
-            <div class="form-group">
-                <button type="button" class="form-control btn btn-success" (click)="onRegisterSpeaker()">Register</button>
-                <button type="button" class="form-control btn btn-danger" (click)="onCancelRegisterSpeaker()">Cancel</button>
-            </div>
-        </form>
+        <speaker-form
+                (onDisableForm)="onCancelRegisterSpeaker()"
+                (onAddingSpeaker)="onRegisterSpeaker($event)"></speaker-form>
     </div>
 
     <div class="row">

@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './components/app.component';
 import {CallForPapersComponent} from "./components/callforpapers.component";
-import {FormsModule} from "@angular/forms";
-import {SpeakerDashboardComponent} from "./components/speaker_dashboard.component";
+import {SpeakerDashboardComponent } from "./components/speaker_dashboard.component";
 import {RouterModule, Routes} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BackendService} from "./services/backend.service";
-
+import {SpeakerFormComponent} from "./components/SpeakerFormComponent";
+import {SpeakerNameComponent} from "./components/SpeakerNameComponent";
+import {SpeakerEmailComponent} from "./components/SpeakerEmailComponent";
+import {SpeakerButtonsComponent} from "./components/SpeakerButtonsComponent";
+import {CommonModule} from "@angular/common";
 
 const appRoutes: Routes = [
     { path: 'call-for-papers', component: CallForPapersComponent },
@@ -19,12 +23,18 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CallForPapersComponent,
-    SpeakerDashboardComponent
+    SpeakerDashboardComponent,
+    SpeakerFormComponent,
+    SpeakerNameComponent,
+    SpeakerEmailComponent,
+    SpeakerButtonsComponent,
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    BrowserModule,
+    FormsModule
   ],
   providers: [BackendService],
   bootstrap: [AppComponent]
