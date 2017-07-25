@@ -1,0 +1,45 @@
+<div class="container">
+    <h1>Admin Dashboard</h1>
+    <h3>List of all Talks</h3>
+    <table class="table">
+        <tr>
+            <td>Speaker</td>
+            <td>Talk Name</td>
+            <td>Talk Abstract</td>
+            <td>Time Slot</td>
+            <td>Action</td>
+        </tr>
+        <tr *ngFor="let talk of talks">
+            <td>{{talk.speaker.name}}</td>
+            <td>{{ talk.name}}</td>
+            <td>{{talk.abstract}}</td>
+            <td>
+                <span *ngIf="talk.accepted">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="timeslots">Timeslot</label>
+                            <select name="timeslots" id="timeslots" class="form-control" [(ngModel)]="talk.timeSlot">
+                                <option *ngFor="let timeSlot of availableTimeless" [value]="timeSlot.value">
+                                    {{timeSlot.value}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" (click)="setTimeSlot(talk.id)" class="btn btn-info">Set</button>
+                            <button type="button" (click)="freeTimeSlot(talk.id)" class="btn btn-danger">Free</button>
+                        </div>
+                    </form>
+                    <span *ngIf="talk.timeSlot">Selected {{talk.timeSlot}}</span>
+                </span>
+            </td>
+            <td>
+                <span *ngIf="talk.accepted">
+                    <button type="button" class="btn btn-danger" (click)="onClickDeclineTalk(talk.id)">Decline</button>
+                </span>
+                <span *ngIf="!talk.accepted">
+                    <button type="button" class="btn btn-success" (click)="onClickAcceptTalk(talk.id)">Accept</button>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>

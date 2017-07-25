@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row" *ngIf="isTalk">
+        <h1>{{talk.name}}</h1>
+        <p>{{talk.abstract}}</p>
+        <p>
+            Speaker: <a routerLink="/speaker/{{talk.speaker.id}}" >{{ talk.speaker.name}}</a>
+        </p>
+    </div>
+    <div class="row" *ngIf="!isTalk">
+        <h1>Available Talks</h1>
+        <table class="table">
+            <tr>
+                <th>Talks</th>
+                <th>State</th>
+            </tr>
+            <tr *ngFor="let talk of talks">
+                <td><a routerLink="/talks/{{talk.id}}"> {{ talk.name }}</a></td>
+                <td><button class="btn {{talk.accepted ? 'btn-success' : 'btn-danger'}}">{{talk.accepted ? 'Accepted' : 'Declined'}}</button> </td>
+            </tr>
+        </table>
+    </div>
+</div>

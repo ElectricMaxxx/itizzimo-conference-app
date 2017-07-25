@@ -1,0 +1,18 @@
+<li>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            {{talk.timeSlot}}
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-6">
+                <h4>{{talk.name}}</h4>
+                <p>
+                    {{talk.abstract}}
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <span class="pull-right">Speaker: <a routerLink="/speaker/{{talk.speaker_id}}">{{talk.speaker.name}}</a></span>
+            </div>
+        </div>
+    </div>
+</li>

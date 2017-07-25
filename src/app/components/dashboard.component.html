@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Welcome to your {{title}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Current Time Table</h2>
+            <ul class="list-unstyled">
+                <talk-on-dashboard [talk]="talk" *ngFor="let talk of talks"></talk-on-dashboard>
+            </ul>
+        </div>
+    </div>
+</div>
