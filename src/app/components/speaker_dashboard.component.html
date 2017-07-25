@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row" *ngIf="isSpeaker">
+        <div class="col-sm-4 profile">
+            <p>
+                Hallo <b>{{speaker.name}}</b>
+            </p>
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="pull-right" *ngIf="!addTalk">
+                    <button type="button" class="btn btn-success" (click)="onClickAddTalk()">Add Talk</button>
+                </div>
+                <div class="add-talk" *ngIf="addTalk">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input name="name" id="name" [(ngModel)]="talk.name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="abstract">Abstract</label>
+                            <textarea name="abstract" id="abstract" [(ngModel)]="talk.abstract" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" (click)="onAddTalk()" class="form-control btn btn-success">Succes</button>
+                            <button type="button" (click)="onCancelAddTalk()" class="form-control btn btn-danger">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Talks</th>
+                    <th>State</th>
+                </tr>
+                <tr *ngFor="let talk of talks">
+                    <td><a routerLink="/talks/{{talk.id}}"> {{ talk.name }}</a></td>
+                    <td><button class="btn {{talk.accepted ? 'btn-success' : 'btn-danger'}}">{{talk.accepted ? 'Accepted' : 'Declined'}}</button> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row" *ngIf="!isSpeaker">
+        <div class="row">
+            <h1>Available Speakers</h1>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+                <tr *ngFor="let speaker of speakers">
+                    <td><a routerLink="/speaker/{{speaker.id}}"> {{ speaker.name }}</a></td>
+                    <td>{{ speaker.email }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
