@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Speaker} from "../values/interfaces";
+import {BackendService} from "../services/backend.service";
 
 @Component({
     selector: 'call-for-paper',
@@ -11,9 +12,13 @@ export class CallForPapersComponent implements OnInit {
     public speakers: Speaker[] = [];
     public speaker: Speaker;
 
+    constructor (private service: BackendService) {}
+
     ngOnInit(): void {
         this.speaker = {name: '', email: '', id: 0};
         this.isRegistering = false;
+
+        this.service.getSpeakers().then((speakers: Speaker[]) => this.speakers = speakers);
     }
 
     onClickRegisterSpeaker() {
@@ -22,7 +27,7 @@ export class CallForPapersComponent implements OnInit {
 
 
     onRegisterSpeaker() {
-        this.speakers.push(this.speaker);
+        this.service.addSpeaker(this.speaker);
         this.speaker = {name: '', email: '', id: 0};
         this.isRegistering = false;
     }

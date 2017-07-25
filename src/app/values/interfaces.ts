@@ -16,3 +16,8 @@ export interface Talk {
 export interface CompleteTalk extends Talk{
     speaker: Speaker;
 }
+
+export interface TimeSlot {
+    value: string;
+    order: number;
+}

@@ -6,6 +6,7 @@ import {CallForPapersComponent} from "./components/callforpapers.component";
 import {FormsModule} from "@angular/forms";
 import {SpeakerDashboardComponent} from "./components/speaker_dashboard.component";
 import {RouterModule, Routes} from "@angular/router";
+import {BackendService} from "./services/backend.service";
 
 
 const appRoutes: Routes = [
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
   ],
-  providers: [],
+  providers: [BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

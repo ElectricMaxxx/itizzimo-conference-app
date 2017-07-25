@@ -3,8 +3,7 @@ import {Component, OnInit} from "@angular/core";
 import {Speaker, Talk} from "../values/interfaces";
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import * as _ from 'lodash';
-
+import {BackendService} from "../services/backend.service";
 @Component({
     selector: 'speaker-dashboard',
     templateUrl: "./speaker_dashboard.component.html"
@@ -17,20 +16,26 @@ export class SpeakerDashboardComponent implements OnInit{
     public addTalk: boolean;
     public talk: Talk;
 
-    constructor (private route: ActivatedRoute) {}
+    constructor (private route: ActivatedRoute, private service: BackendService) {}
 
     ngOnInit(): void {
         this.isSpeaker = false;
-        this.speakers = [{id: 1, name: 'Max', email: 'maximilian.berghoff@mayflower.de'}];
+        this.speakers = [];
         this.addTalk = false;
-        this.talks = [];
         this.resetTalk();
 
         const id = this.route.snapshot.paramMap.get('id');
 
-        this.speaker = this.speakers.find(speaker => speaker.id == Number(id));
-        if (!_.isUndefined(this.speaker)) {
-            this.isSpeaker = true;
+        if (null == id) {
+            this.service.getSpeakers().then((speakers: Speaker[]) => this.speakers = speakers);
+            return;
+        } else {
+            this.service.getSpeaker(id).then((speaker:Speaker) => {
+                this.speaker = speaker;
+                this.isSpeaker = true;
+            });
+
+            this.service.getTalksBySpeakerId(id).then((talks: Talk[]) => this.talks = talks);
         }
     }
 
@@ -45,9 +50,11 @@ export class SpeakerDashboardComponent implements OnInit{
 
     onAddTalk() {
         this.talk.speaker_id = this.speaker.id;
-        this.talks.push(this.talk);
+        this.service.addTalk(this.talk);
         this.resetTalk();
         this.addTalk = false;
+
+        this.service.getTalksBySpeakerId(this.speaker.id).then((talks: Talk[]) => this.talks = talks);
     }
 
     onCancelAddTalk() {

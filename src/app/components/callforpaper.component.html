@@ -28,7 +28,7 @@
                 <th>Email</th>
             </tr>
             <tr *ngFor="let speaker of speakers">
-                <td>{{ speaker.name }}</td>
+                <td><a routerLink="/speaker/{{speaker.id}}"> {{ speaker.name }}</a></td>
                 <td>{{ speaker.email }}</td>
             </tr>
         </table>
