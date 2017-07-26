@@ -826,3 +826,4 @@ Note: Neben den Basics haben wir uns nun auch an ein paar advanced Features gewa
 * [Jasmine](https://jasmine.github.io/2.0/introduction.html)
 * [Reactive Forms](https://angular.io/guide/reactive-forms)
 * [Reactive Forms on steroids](https://toddmotto.com/component-architecture-reactive-forms-angular)
+* [RxJs Slides](https://www.slideshare.net/maximilianberghoff/reactive-javascript-froscon-2016)
