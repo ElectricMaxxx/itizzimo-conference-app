@@ -597,7 +597,7 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 })
 export class InnerComponent {
     @Input() title: string = '';
-    @output onClick: EventEmitter<void> = new EventEmitter();
+    @Output() onClick: EventEmitter<void> = new EventEmitter();
     onClick() {
         this.onClick.emit();
     }
